@@ -1,0 +1,124 @@
+{
+  "fixture": "ghost/dsse-receipt-verification-fixture/v1",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC TEST VECTOR. Not a real purchase. Signed with an ephemeral key that is NOT Ghost's production receipt key. No payment occurred; the example URLs are example.org/net/com placeholders.",
+  "generated_at_utc": "2026-09-10",
+  "produced_by": "the production code path: ghost_service.api._receipt_for, unmodified",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 selection receipt attribution",
+      "results": 3
+    }
+  },
+  "http_response_body": {
+    "query": "x402 selection receipt attribution",
+    "results": [
+      {
+        "title": "Verifiable attribution for agent purchases",
+        "url": "https://example.org/a",
+        "snippet": "A seller receipt binds the operation, not the discovery path.",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "DSSE for payment receipts",
+        "url": "https://example.net/b",
+        "snippet": "Pre-Authentication Encoding binds the payload type.",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "x402 v2 header terms",
+        "url": "https://example.com/c",
+        "snippet": "Payment requirements travel in the PAYMENT-REQUIRED header.",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": null,
+    "knowledge": null,
+    "related_questions": [],
+    "related_searches": [],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "rail": "x402-per-call",
+      "payments_required": 1,
+      "note": "one payment to Ghost; the provider is Ghost's own commercial account, not a second charge to you"
+    },
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjEiLCAiYXR0cmlidXRlcyI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAib3JhY2xlX3ZlcmRpY3QiOiB7ImRldGVybWluaXN0aWMiOiB0cnVlLCAib3JhY2xlIjogInZlcmlmaWVkLXdlYi1zZWFyY2gvdjEiLCAidmVyZGljdCI6ICJERUxJVkVSRUQifSwgInBheW1lbnQiOiB7ImNvbmZpcm1hdGlvbnMiOiAwLCAiZXZpZGVuY2VfY2xhc3MiOiAiTElWRV9VTlBBSUQiLCAicmVmZXJlbmNlIjogIiIsICJzdGF0dXMiOiAiTk9UX0NPTk5FQ1RFRCJ9LCAicmVxdWVzdF9maW5nZXJwcmludCI6ICJzaGEyNTY6OWU0ZTIwODYyYWEwYjgxMTljNzFmMTMwYjg3YzAxMzEzMDRiMTM5ZDFjMDViNWYzZGZlOWNiNGZlZjhhMjhkYiIsICJyZXNwb25zZV9maW5nZXJwcmludCI6ICJzaGEyNTY6MDI5NGE1OWIxNzAzZGM0ODJkNzg0MGQ4YjNjN2U2MThhOTE5NDY0ZDk3N2EzZGJhNDMwMDhhYzI4OTQ2ODE4MiIsICJzZXJ2ZWRfYXQiOiAxNzg5MDU2MDA3LjczMjAwOTZ9",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "fFvM+Qtp4f0U/TvbUv04T2nGBB23Qgu+bXgqVfj4VoGfIeR4FAZzLxdrTFr3RFKnruobJXKphFp0RefwMBpUAQ=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v1",
+    "attributes": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "confirmations": 0,
+      "evidence_class": "LIVE_UNPAID",
+      "reference": "",
+      "status": "NOT_CONNECTED"
+    },
+    "request_fingerprint": "sha256:9e4e20862aa0b8119c71f130b87c0131304b139d1c05b5f3dfe9cb4fef8a28db",
+    "response_fingerprint": "sha256:0294a59b1703dc482d7840d8b3c7e618a919464d977a3dba43008ac289468182",
+    "served_at": 1789056007.7320096
+  },
+  "recomputation_inputs": {
+    "request_fingerprint_preimage": {
+      "query": "x402 selection receipt attribution",
+      "results": 3
+    },
+    "response_fingerprint_preimage": {
+      "provider": "serpingapi.com",
+      "result_count": 3,
+      "urls": [
+        "https://example.org/a",
+        "https://example.net/b",
+        "https://example.com/c"
+      ]
+    }
+  }
+}
