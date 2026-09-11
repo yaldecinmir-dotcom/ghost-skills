@@ -1,0 +1,170 @@
+{
+  "fixture": "ghost/dsse-receipt-verification-fixture/v2#n6-unpaid-dressed-as-paid",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC TEST VECTOR. No payment occurred. Ephemeral fixture key, not Ghost's production key. Result URLs are placeholders.",
+  "generated_at_utc": "2026-09-11",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 selection receipt attribution",
+      "results": 3
+    }
+  },
+  "http_response_status": 200,
+  "http_response_body": {
+    "query": "x402 selection receipt attribution",
+    "results": [
+      {
+        "title": "Verifiable attribution for agent purchases",
+        "url": "https://example.org/a",
+        "snippet": "A seller receipt binds the operation, not the discovery path.",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "DSSE for payment receipts",
+        "url": "https://example.net/b",
+        "snippet": "Pre-Authentication Encoding binds the payload type.",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "x402 v2 header terms",
+        "url": "https://example.com/c",
+        "snippet": "Payment requirements travel in the PAYMENT-REQUIRED header.",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": null,
+    "knowledge": null,
+    "related_questions": [],
+    "related_searches": [],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIiLCAib3BlcmF0aW9uX2lkIjogImdvcF9hMWIyYzNkNGU1ZjYwNzE4MjkzYTRiNWM2ZDdlOGY5MCIsICJvcmFjbGVfdmVyZGljdCI6IHsiZGV0ZXJtaW5pc3RpYyI6IHRydWUsICJvcmFjbGUiOiAidmVyaWZpZWQtd2ViLXNlYXJjaC92MSIsICJ2ZXJkaWN0IjogIkRFTElWRVJFRCJ9LCAicGF5bWVudCI6IHsiYXNzZXQiOiBudWxsLCAiY2xhaW1lZF9hbW91bnQiOiBudWxsLCAiY2xhaW1lZF9hbW91bnRfbWlub3IiOiBudWxsLCAiY3VycmVuY3kiOiBudWxsLCAibmV0d29yayI6IG51bGwsICJub3RlIjogIk5vIHBheW1lbnQgaXMgYXNzZXJ0ZWQgYnkgdGhpcyBzdGF0ZW1lbnQuIiwgInBheV90byI6IG51bGwsICJyYWlsIjogbnVsbCwgInNldHRsZW1lbnRfcmVmZXJlbmNlIjogbnVsbCwgInN0YXRlIjogIlVOUEFJRCJ9LCAicHJvdmVuYW5jZSI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAicmVjZWlwdF9pZCI6ICJncmNfYTFiMmMzZDRlNWY2MDcxODI5M2E0YjVjNmQ3ZThmOTAiLCAicmVxdWVzdCI6IHsiY2Fub25pY2FsX3VybCI6ICJodHRwczovL2dob3N0LWlkZW50aXR5Lmdob3N0LWFnZW50LW9zLndvcmtlcnMuZGV2L3YxL3NlYXJjaCIsICJmaW5nZXJwcmludCI6ICJzaGEyNTY6ZmQ0OTQ0Y2Y0ZDU0NWY1ZTQ5ZjgwZTc3OGI4YTllMDZiMmQ0NzRiZTcxMGExODdjYjc5OTkxNjRjYzIxY2U1YiIsICJtZXRob2QiOiAiUE9TVCIsICJzdWJzZXQiOiB7ImNvdW50cnkiOiAiIiwgImxhbmd1YWdlIjogIiIsICJxdWVyeSI6ICJ4NDAyIHNlbGVjdGlvbiByZWNlaXB0IGF0dHJpYnV0aW9uIiwgInJlc3VsdHMiOiAzfSwgInN1YnNldF9kZWZhdWx0cyI6IHsiY291bnRyeSI6ICIiLCAibGFuZ3VhZ2UiOiAiIiwgInF1ZXJ5IjogIiIsICJyZXN1bHRzIjogMTB9LCAic3Vic2V0X2ZpZWxkcyI6IFsicXVlcnkiLCAicmVzdWx0cyIsICJjb3VudHJ5IiwgImxhbmd1YWdlIl19LCAicmVzcG9uc2UiOiB7ImZpbmdlcnByaW50IjogInNoYTI1NjoyY2UxMjkwMzc1NDM0ZGVjMGQ5Y2QxYTA5MWZjY2QyMTVhMzJiM2U2NGFmZWE4MDhjNmIyYTFkYTM0NDI4OTM0IiwgInN0YXR1cyI6IDIwMCwgInN1YnNldCI6IHsicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20iLCAicmVzdWx0X2NvdW50IjogMywgInVybHMiOiBbImh0dHBzOi8vZXhhbXBsZS5vcmcvYSIsICJodHRwczovL2V4YW1wbGUubmV0L2IiLCAiaHR0cHM6Ly9leGFtcGxlLmNvbS9jIl19LCAic3Vic2V0X2ZpZWxkcyI6IFsicHJvdmlkZXIiLCAicmVzdWx0X2NvdW50IiwgInVybHMiXX0sICJzZWxsZXIiOiB7ImRvbWFpbiI6ICJnaG9zdC1pZGVudGl0eS5naG9zdC1hZ2VudC1vcy53b3JrZXJzLmRldiIsICJrZXlpZCI6ICJlZDI1NTE5OjU2NDc1YWE3NTQ2MzQ3NGMwMjg1ZGY1ZGJmMmJjYWI3IiwgInBheV90byI6ICIweDI2YzUzNkY5RkI1MGQ1QmQzZjZlRkU0NzM4ODA3ZDg4RTIzRkExM2UifSwgInNlcnZlZF9hdCI6IDE3ODkxMzA5OTguOCwgInNpZ25lZF9hdCI6IDE3ODkxMzEwMDAuMH0=",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "s8kCaljQ92gyR6Oo25NrujaJeaFqN+cvICtsXvJPzpfva0JZkkLxCTUAKzKwFf5wm14DlE8moamlJNPzWpGfAQ=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    },
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "rail": "x402-per-call",
+      "payments_required": 1,
+      "claim": "PAID"
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v2",
+    "operation_id": "gop_a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "asset": null,
+      "claimed_amount": null,
+      "claimed_amount_minor": null,
+      "currency": null,
+      "network": null,
+      "note": "No payment is asserted by this statement.",
+      "pay_to": null,
+      "rail": null,
+      "settlement_reference": null,
+      "state": "UNPAID"
+    },
+    "provenance": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "receipt_id": "grc_a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "request": {
+      "canonical_url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+      "fingerprint": "sha256:fd4944cf4d545f5e49f80e778b8a9e06b2d474be710a187cb7999164cc21ce5b",
+      "method": "POST",
+      "subset": {
+        "country": "",
+        "language": "",
+        "query": "x402 selection receipt attribution",
+        "results": 3
+      },
+      "subset_defaults": {
+        "country": "",
+        "language": "",
+        "query": "",
+        "results": 10
+      },
+      "subset_fields": [
+        "query",
+        "results",
+        "country",
+        "language"
+      ]
+    },
+    "response": {
+      "fingerprint": "sha256:2ce1290375434dec0d9cd1a091fccd215a32b3e64afea808c6b2a1da34428934",
+      "status": 200,
+      "subset": {
+        "provider": "serpingapi.com",
+        "result_count": 3,
+        "urls": [
+          "https://example.org/a",
+          "https://example.net/b",
+          "https://example.com/c"
+        ]
+      },
+      "subset_fields": [
+        "provider",
+        "result_count",
+        "urls"
+      ]
+    },
+    "seller": {
+      "domain": "ghost-identity.ghost-agent-os.workers.dev",
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e"
+    },
+    "served_at": 1789130998.8,
+    "signed_at": 1789131000.0
+  },
+  "negative_test": "n6-unpaid-dressed-as-paid",
+  "expected_result": {
+    "DSSE_SIGNATURE": "VALID",
+    "BILLING_CROSSCHECK": "FAIL",
+    "PAYMENT_STATE": "UNPAID",
+    "exit": 1,
+    "note": "An UNPAID receipt must never present as paid."
+  }
+}

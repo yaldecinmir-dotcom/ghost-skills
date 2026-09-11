@@ -1,0 +1,167 @@
+{
+  "fixture": "ghost/dsse-receipt-verification-fixture/v2#n3-amount-in-signed-payload",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC TEST VECTOR. No payment occurred. Ephemeral fixture key, not Ghost's production key. Result URLs are placeholders.",
+  "generated_at_utc": "2026-09-11",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 selection receipt attribution",
+      "results": 3
+    }
+  },
+  "http_response_status": 200,
+  "http_response_body": {
+    "query": "x402 selection receipt attribution",
+    "results": [
+      {
+        "title": "Verifiable attribution for agent purchases",
+        "url": "https://example.org/a",
+        "snippet": "A seller receipt binds the operation, not the discovery path.",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "DSSE for payment receipts",
+        "url": "https://example.net/b",
+        "snippet": "Pre-Authentication Encoding binds the payload type.",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "x402 v2 header terms",
+        "url": "https://example.com/c",
+        "snippet": "Payment requirements travel in the PAYMENT-REQUIRED header.",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": null,
+    "knowledge": null,
+    "related_questions": [],
+    "related_searches": [],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIiLCAib3BlcmF0aW9uX2lkIjogImdvcF9iMmMzZDRlNWY2MDcxODI5M2E0YjVjNmQ3ZThmOTAwMSIsICJvcmFjbGVfdmVyZGljdCI6IHsiZGV0ZXJtaW5pc3RpYyI6IHRydWUsICJvcmFjbGUiOiAidmVyaWZpZWQtd2ViLXNlYXJjaC92MSIsICJ2ZXJkaWN0IjogIkRFTElWRVJFRCJ9LCAicGF5bWVudCI6IHsiYXNzZXQiOiAiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwgImNsYWltZWRfYW1vdW50IjogIjEuMDAiLCAiY2xhaW1lZF9hbW91bnRfbWlub3IiOiAiMTAwMDAwMCIsICJjdXJyZW5jeSI6ICJVU0RDIiwgIm5ldHdvcmsiOiAiZWlwMTU1Ojg0NTMiLCAibm90ZSI6ICJBIHNlbGxlciBhc3NlcnRpb24uIE5vdCBldmlkZW5jZS4gVmVyaWZ5IHRoZSB0cmFuc2ZlciBvbiBCYXNlIHlvdXJzZWxmIGJlZm9yZSB0cmVhdGluZyB0aGlzIGFzIHNldHRsZWQuIiwgInBheV90byI6ICIweDI2YzUzNkY5RkI1MGQ1QmQzZjZlRkU0NzM4ODA3ZDg4RTIzRkExM2UiLCAicmFpbCI6ICJ4NDAyLWV4YWN0IiwgInNldHRsZW1lbnRfcmVmZXJlbmNlIjogIjB4MmYxYzlhN2I0ZTZkMDgxMzVhN2M0YjJlOWYwZDZhM2M4YjVlMWQ3ZjRhMmM5YjZlM2QwZjhhNWMyYjdlNGQxOSIsICJzdGF0ZSI6ICJDTEFJTUVEIn0sICJwcm92ZW5hbmNlIjogeyJhdHRlbXB0cyI6IFt7ImVsYXBzZWRfbXMiOiA4MTIsICJvdXRjb21lIjogIkRFTElWRVJFRCIsICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9XSwgInByb3ZpZGVyIjogInNlcnBpbmdhcGkuY29tIn0sICJyZWNlaXB0X2lkIjogImdyY19iMmMzZDRlNWY2MDcxODI5M2E0YjVjNmQ3ZThmOTAwMSIsICJyZXF1ZXN0IjogeyJjYW5vbmljYWxfdXJsIjogImh0dHBzOi8vZ2hvc3QtaWRlbnRpdHkuZ2hvc3QtYWdlbnQtb3Mud29ya2Vycy5kZXYvdjEvc2VhcmNoIiwgImZpbmdlcnByaW50IjogInNoYTI1NjpmZDQ5NDRjZjRkNTQ1ZjVlNDlmODBlNzc4YjhhOWUwNmIyZDQ3NGJlNzEwYTE4N2NiNzk5OTE2NGNjMjFjZTViIiwgIm1ldGhvZCI6ICJQT1NUIiwgInN1YnNldCI6IHsiY291bnRyeSI6ICIiLCAibGFuZ3VhZ2UiOiAiIiwgInF1ZXJ5IjogIng0MDIgc2VsZWN0aW9uIHJlY2VpcHQgYXR0cmlidXRpb24iLCAicmVzdWx0cyI6IDN9LCAic3Vic2V0X2RlZmF1bHRzIjogeyJjb3VudHJ5IjogIiIsICJsYW5ndWFnZSI6ICIiLCAicXVlcnkiOiAiIiwgInJlc3VsdHMiOiAxMH0sICJzdWJzZXRfZmllbGRzIjogWyJxdWVyeSIsICJyZXN1bHRzIiwgImNvdW50cnkiLCAibGFuZ3VhZ2UiXX0sICJyZXNwb25zZSI6IHsiZmluZ2VycHJpbnQiOiAic2hhMjU2OjJjZTEyOTAzNzU0MzRkZWMwZDljZDFhMDkxZmNjZDIxNWEzMmIzZTY0YWZlYTgwOGM2YjJhMWRhMzQ0Mjg5MzQiLCAic3RhdHVzIjogMjAwLCAic3Vic2V0IjogeyJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSIsICJyZXN1bHRfY291bnQiOiAzLCAidXJscyI6IFsiaHR0cHM6Ly9leGFtcGxlLm9yZy9hIiwgImh0dHBzOi8vZXhhbXBsZS5uZXQvYiIsICJodHRwczovL2V4YW1wbGUuY29tL2MiXX0sICJzdWJzZXRfZmllbGRzIjogWyJwcm92aWRlciIsICJyZXN1bHRfY291bnQiLCAidXJscyJdfSwgInNlbGxlciI6IHsiZG9tYWluIjogImdob3N0LWlkZW50aXR5Lmdob3N0LWFnZW50LW9zLndvcmtlcnMuZGV2IiwgImtleWlkIjogImVkMjU1MTk6NTY0NzVhYTc1NDYzNDc0YzAyODVkZjVkYmYyYmNhYjciLCAicGF5X3RvIjogIjB4MjZjNTM2RjlGQjUwZDVCZDNmNmVGRTQ3Mzg4MDdkODhFMjNGQTEzZSJ9LCAic2VydmVkX2F0IjogMTc4OTEzMDk5OC44LCAic2lnbmVkX2F0IjogMTc4OTEzMTAwMC4wfQ==",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "NNV7yVKwOZgGEdaGTZmTLiqVhHyb9y1zELy9FhzJhG9ByVSB4jucpQF5/QzyE6tnG+db2BD6Hd15Q/cckybODg=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    },
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "rail": "x402-per-call",
+      "payments_required": 1
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v2",
+    "operation_id": "gop_b2c3d4e5f60718293a4b5c6d7e8f9001",
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "claimed_amount": "1.00",
+      "claimed_amount_minor": "1000000",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "note": "A seller assertion. Not evidence. Verify the transfer on Base yourself before treating this as settled.",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e",
+      "rail": "x402-exact",
+      "settlement_reference": "0x2f1c9a7b4e6d08135a7c4b2e9f0d6a3c8b5e1d7f4a2c9b6e3d0f8a5c2b7e4d19",
+      "state": "CLAIMED"
+    },
+    "provenance": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "receipt_id": "grc_b2c3d4e5f60718293a4b5c6d7e8f9001",
+    "request": {
+      "canonical_url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+      "fingerprint": "sha256:fd4944cf4d545f5e49f80e778b8a9e06b2d474be710a187cb7999164cc21ce5b",
+      "method": "POST",
+      "subset": {
+        "country": "",
+        "language": "",
+        "query": "x402 selection receipt attribution",
+        "results": 3
+      },
+      "subset_defaults": {
+        "country": "",
+        "language": "",
+        "query": "",
+        "results": 10
+      },
+      "subset_fields": [
+        "query",
+        "results",
+        "country",
+        "language"
+      ]
+    },
+    "response": {
+      "fingerprint": "sha256:2ce1290375434dec0d9cd1a091fccd215a32b3e64afea808c6b2a1da34428934",
+      "status": 200,
+      "subset": {
+        "provider": "serpingapi.com",
+        "result_count": 3,
+        "urls": [
+          "https://example.org/a",
+          "https://example.net/b",
+          "https://example.com/c"
+        ]
+      },
+      "subset_fields": [
+        "provider",
+        "result_count",
+        "urls"
+      ]
+    },
+    "seller": {
+      "domain": "ghost-identity.ghost-agent-os.workers.dev",
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e"
+    },
+    "served_at": 1789130998.8,
+    "signed_at": 1789131000.0
+  },
+  "negative_test": "n3-amount-in-signed-payload",
+  "expected_result": {
+    "DSSE_SIGNATURE": "FAIL",
+    "exit": 2,
+    "note": "Amount is inside the envelope in v2, so tampering breaks the signature."
+  }
+}

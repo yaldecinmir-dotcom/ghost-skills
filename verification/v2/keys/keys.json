@@ -1,0 +1,36 @@
+{
+  "_type": "ghost-receipt-keys/v1",
+  "updated_at": "2026-09-11",
+  "intended_discovery_url": "https://ghost-identity.ghost-agent-os.workers.dev/.well-known/ghost-receipt-keys.json",
+  "interim_discovery_url": "https://raw.githubusercontent.com/yaldecinmir-dotcom/ghost-skills/main/verification/v2/keys/keys.json",
+  "note": "The origin does not serve the intended URL yet; that is a production change and has not been made. Until it is, this file is the discovery document.",
+  "policy": {
+    "algorithm": "ed25519",
+    "keyid_derivation": "\"ed25519:\" + sha256(raw_32_byte_public_key).hexdigest()[:32]",
+    "rotation": "A replacement key is published with not_before in the future and the predecessor gets a not_after at or after that moment, so the windows overlap and no honest receipt is rejected during a changeover.",
+    "retirement": "A retired key is never deleted from this document. Receipts signed while it was valid stay verifiable; verifiers check signed_at against the key window rather than against the current time.",
+    "compromise": "A key believed compromised is marked status=revoked with a revoked_at, and receipts signed after that moment are rejected."
+  },
+  "keys": [
+    {
+      "keyid": "ed25519:7099881747dbeb09281700d24375d46b",
+      "algorithm": "ed25519",
+      "status": "active",
+      "use": "receipt",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA5axYjSRfyfe9I9nZK4HqOAroMSfl1pqvW6m4hiUsiaE=\n-----END PUBLIC KEY-----\n",
+      "comment": "Ghost production receipt key, ghost-identity.ghost-agent-os.workers.dev"
+    },
+    {
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "algorithm": "ed25519",
+      "status": "fixture",
+      "use": "fixture",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC fixture key. Ephemeral, never used in production."
+    }
+  ]
+}

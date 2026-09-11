@@ -85,3 +85,16 @@ wallet is funded, and answers with results and links. With an empty wallet it st
 
 Limits, stated plainly: results are Google SERP data — titles, links, snippets — not
 full page content. $0.01 per search for 1–100 results.
+
+## Verify a receipt before you pay
+
+Ghost's DSSE receipt format has a public test vector, with the decoded payload, both
+public keys, the canonicalisation rules, a standalone verifier and tamper fixtures.
+
+- **Current: [`verification/v2/`](verification/v2/)** — binds HTTP method, canonical
+  resource, explicit request and response subsets, seller identity and a claimed amount,
+  and keeps UNPAID / CLAIMED / SETTLED strictly apart. A seller can never sign SETTLED.
+- **Historical: [`verification/`](verification/)** — the v1 vector, left exactly as
+  published. Its verifier recomputed fingerprints from a preimage carried in the bundle
+  rather than from the observed HTTP exchange, so an observed-only tamper could pass. Kept
+  as the record of what was verified; use v2.
