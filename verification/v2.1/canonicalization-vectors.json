@@ -1,0 +1,64 @@
+{
+  "_type": "ghost-canonicalization-vectors/v1",
+  "scheme": "RFC 8785 JCS over UTF-8",
+  "how_to_use": "Serialise `value` with your JCS implementation; it must equal `jcs` byte for byte. `sha256` is the digest Ghost commits to.",
+  "vectors": [
+    {
+      "name": "non_ascii_query",
+      "value": {
+        "query": "café İstanbul 🔍",
+        "results": 3
+      },
+      "jcs": "{\"query\":\"café İstanbul 🔍\",\"results\":3}",
+      "sha256": "sha256:c12dcbf12343a095d9d7c2939c96413276ff0670823c7daab29d58ca3b699b86"
+    },
+    {
+      "name": "integral_float",
+      "value": {
+        "results": 3.0
+      },
+      "jcs": "{\"results\":3}",
+      "sha256": "sha256:2d4595347b86c689cd451de8e0cd4302f7794d9d3a62bf389b0d5935858af709"
+    },
+    {
+      "name": "key_order_utf16",
+      "value": {
+        "￿": 1,
+        "𐀀": 2
+      },
+      "jcs": "{\"𐀀\":2,\"￿\":1}",
+      "sha256": "sha256:72406deb9e8efdb3b2d8b80c26ebd8d609a5338250baa8308cab44bbe7506499"
+    },
+    {
+      "name": "large_number",
+      "value": {
+        "n": 1e+21
+      },
+      "jcs": "{\"n\":1e+21}",
+      "sha256": "sha256:f1ee2b60ee95a3170fdc07a577e5f3514ced26867443d69da265acadead81007"
+    },
+    {
+      "name": "control_escapes",
+      "value": {
+        "q": "a\tb\nc"
+      },
+      "jcs": "{\"q\":\"a\\tb\\nc\"}",
+      "sha256": "sha256:5a3b4bcf17249bfa221d8c3657afec676e7471206813e12bda4f693e57b86613"
+    },
+    {
+      "name": "nested_and_array",
+      "value": {
+        "b": [
+          1,
+          {
+            "z": null,
+            "a": true
+          }
+        ],
+        "a": "ü"
+      },
+      "jcs": "{\"a\":\"ü\",\"b\":[1,{\"a\":true,\"z\":null}]}",
+      "sha256": "sha256:b53ffde14167af91f9c20b4d5d18fde3c945d9bb856f94ff3a5f4e405b4870d4"
+    }
+  ]
+}

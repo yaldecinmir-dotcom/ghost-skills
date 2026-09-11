@@ -1,0 +1,183 @@
+{
+  "fixture": "ghost/dsse-receipt-verification-fixture/v2.1#n23-unpaid-dressed-as-paid",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC TEST VECTOR. No payment occurred. Synthetic keys only.",
+  "generated_at_utc": "2026-09-11",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 makbuz do\u011frulama caf\u00e9",
+      "results": 3
+    }
+  },
+  "http_response_status": 200,
+  "http_response_body": {
+    "query": "x402 makbuz do\u011frulama caf\u00e9",
+    "results": [
+      {
+        "title": "Verifiable attribution for agent purchases",
+        "url": "https://example.org/a",
+        "snippet": "A seller receipt binds the operation, not the discovery path.",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "DSSE for payment receipts",
+        "url": "https://example.net/b",
+        "snippet": "Pre-Authentication Encoding binds the payload type.",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "x402 v2 header terms",
+        "url": "https://example.com/c",
+        "snippet": "Payment requirements travel in the PAYMENT-REQUIRED header.",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": {
+      "text": "Terms travel in the header.",
+      "source": "https://example.com/c"
+    },
+    "knowledge": {
+      "title": "x402",
+      "type": "protocol"
+    },
+    "related_questions": [
+      "what is x402"
+    ],
+    "related_searches": [
+      "x402 receipt"
+    ],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIuMSIsICJvcGVyYXRpb25faWQiOiAiZ29wX2ExYjJjM2Q0ZTVmNjA3MTgyOTNhNGI1YzZkN2U4ZjkwIiwgIm9yYWNsZV92ZXJkaWN0IjogeyJkZXRlcm1pbmlzdGljIjogdHJ1ZSwgIm9yYWNsZSI6ICJ2ZXJpZmllZC13ZWItc2VhcmNoL3YxIiwgInZlcmRpY3QiOiAiREVMSVZFUkVEIn0sICJwYXltZW50IjogeyJhc3NldCI6IG51bGwsICJjbGFpbWVkX2Ftb3VudCI6IG51bGwsICJjbGFpbWVkX2Ftb3VudF9taW5vciI6IG51bGwsICJjdXJyZW5jeSI6IG51bGwsICJuZXR3b3JrIjogbnVsbCwgIm5vdGUiOiAiTm8gcGF5bWVudCBpcyBhc3NlcnRlZCBieSB0aGlzIHN0YXRlbWVudC4iLCAicGF5X3RvIjogbnVsbCwgInJhaWwiOiBudWxsLCAic2V0dGxlbWVudF9yZWZlcmVuY2UiOiBudWxsLCAic3RhdGUiOiAiVU5QQUlEIn0sICJwcm9maWxlIjogeyJjYW5vbmljYWxpc2F0aW9uIjogIlJGQyA4Nzg1IEpDUyBvdmVyIFVURi04IiwgIm1heF9zaWduYXR1cmVzIjogMSwgInNpZ25hdHVyZV9hbGdvcml0aG0iOiAiZWQyNTUxOSJ9LCAicHJvdmVuYW5jZSI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAicmVjZWlwdF9pZCI6ICJncmNfYTFiMmMzZDRlNWY2MDcxODI5M2E0YjVjNmQ3ZThmOTAiLCAicmVxdWVzdCI6IHsiZXhhY3RfcmVzb3VyY2VfdXJsIjogImh0dHBzOi8vZ2hvc3QtaWRlbnRpdHkuZ2hvc3QtYWdlbnQtb3Mud29ya2Vycy5kZXYvdjEvc2VhcmNoIiwgImZpbmdlcnByaW50IjogInNoYTI1Njo0NGY0MzZiMTYyNmQ4OWY3OTFlMWJkZjRmMzliMjk4MTg1NmY1YWEzN2ExNTU0NWU1ZjY1MDk0ZTU4YzdlYWNjIiwgIm1ldGhvZCI6ICJQT1NUIiwgInN1YnNldCI6IHsiY291bnRyeSI6ICIiLCAibGFuZ3VhZ2UiOiAiIiwgInF1ZXJ5IjogIng0MDIgbWFrYnV6IGRvXHUwMTFmcnVsYW1hIGNhZlx1MDBlOSIsICJyZXN1bHRzIjogM30sICJzdWJzZXRfZGVmYXVsdHMiOiB7ImNvdW50cnkiOiAiIiwgImxhbmd1YWdlIjogIiIsICJxdWVyeSI6ICIiLCAicmVzdWx0cyI6IDEwfSwgInN1YnNldF9maWVsZHMiOiBbInF1ZXJ5IiwgInJlc3VsdHMiLCAiY291bnRyeSIsICJsYW5ndWFnZSJdfSwgInJlc3BvbnNlIjogeyJmaW5nZXJwcmludCI6ICJzaGEyNTY6ZDIwNjgxYzM5OGFiNGZlNTkwZmNjOWI2NGE2NTllNGExY2UyZGIwYjJhZDQ2YWM1YTYyYjIwNDJlMTZhYmMwYyIsICJzdGF0dXMiOiAyMDAsICJzdWJzZXQiOiB7ImNvbnRlbnRfZGlnZXN0IjogInNoYTI1Njo5N2QzYTQzNGM4YjViNTBkZTJiMTQ1NTk0MWUxMWU1YTJhMDk2YzRlNzE0NTQ1YmIwZDI1MTk0NThiNWIzYTQ5IiwgInByb3ZpZGVyIjogInNlcnBpbmdhcGkuY29tIiwgInJlc3VsdF9jb3VudCI6IDMsICJ1cmxzIjogWyJodHRwczovL2V4YW1wbGUub3JnL2EiLCAiaHR0cHM6Ly9leGFtcGxlLm5ldC9iIiwgImh0dHBzOi8vZXhhbXBsZS5jb20vYyJdfSwgInN1YnNldF9maWVsZHMiOiBbInByb3ZpZGVyIiwgInJlc3VsdF9jb3VudCIsICJ1cmxzIiwgImNvbnRlbnRfZGlnZXN0Il19LCAic2VsbGVyIjogeyJkb21haW4iOiAiZ2hvc3QtaWRlbnRpdHkuZ2hvc3QtYWdlbnQtb3Mud29ya2Vycy5kZXYiLCAia2V5aWQiOiAiZWQyNTUxOTo1NjQ3NWFhNzU0NjM0NzRjMDI4NWRmNWRiZjJiY2FiNyIsICJwYXlfdG8iOiAiMHgyNmM1MzZGOUZCNTBkNUJkM2Y2ZUZFNDczODgwN2Q4OEUyM0ZBMTNlIn0sICJzZXJ2ZWRfYXQiOiAxNzg5MTMwOTk4LjgsICJzaWduZWRfYXQiOiAxNzg5MTMxMDAwLjB9",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "aOFkbqpNxi+d6vKdwubhPUT4fs3KPQwoFIgQNMFURPvVqXZZJ2TGTPIWF2zkVJjakSEiu0ME9HhwdEkKSUYtAQ=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    },
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "claim": "PAID"
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v2.1",
+    "operation_id": "gop_a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "asset": null,
+      "claimed_amount": null,
+      "claimed_amount_minor": null,
+      "currency": null,
+      "network": null,
+      "note": "No payment is asserted by this statement.",
+      "pay_to": null,
+      "rail": null,
+      "settlement_reference": null,
+      "state": "UNPAID"
+    },
+    "profile": {
+      "canonicalisation": "RFC 8785 JCS over UTF-8",
+      "max_signatures": 1,
+      "signature_algorithm": "ed25519"
+    },
+    "provenance": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "receipt_id": "grc_a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "request": {
+      "exact_resource_url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+      "fingerprint": "sha256:44f436b1626d89f791e1bdf4f39b2981856f5aa37a15545e5f65094e58c7eacc",
+      "method": "POST",
+      "subset": {
+        "country": "",
+        "language": "",
+        "query": "x402 makbuz do\u011frulama caf\u00e9",
+        "results": 3
+      },
+      "subset_defaults": {
+        "country": "",
+        "language": "",
+        "query": "",
+        "results": 10
+      },
+      "subset_fields": [
+        "query",
+        "results",
+        "country",
+        "language"
+      ]
+    },
+    "response": {
+      "fingerprint": "sha256:d20681c398ab4fe590fcc9b64a659e4a1ce2db0b2ad46ac5a62b2042e16abc0c",
+      "status": 200,
+      "subset": {
+        "content_digest": "sha256:97d3a434c8b5b50de2b1455941e11e5a2a096c4e714545bb0d2519458b5b3a49",
+        "provider": "serpingapi.com",
+        "result_count": 3,
+        "urls": [
+          "https://example.org/a",
+          "https://example.net/b",
+          "https://example.com/c"
+        ]
+      },
+      "subset_fields": [
+        "provider",
+        "result_count",
+        "urls",
+        "content_digest"
+      ]
+    },
+    "seller": {
+      "domain": "ghost-identity.ghost-agent-os.workers.dev",
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e"
+    },
+    "served_at": 1789130998.8,
+    "signed_at": 1789131000.0
+  },
+  "negative_test": "n23-unpaid-dressed-as-paid",
+  "expected_result": {
+    "BILLING_CROSSCHECK": "FAIL",
+    "PAYMENT_STATE": "UNPAID",
+    "exit": 1
+  }
+}

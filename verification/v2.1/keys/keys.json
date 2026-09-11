@@ -1,0 +1,84 @@
+{
+  "_type": "ghost-receipt-keys/v2",
+  "updated_at": "2026-09-11",
+  "intended_discovery_url": "https://ghost-identity.ghost-agent-os.workers.dev/.well-known/ghost-receipt-keys.json",
+  "interim_discovery_url": "https://raw.githubusercontent.com/yaldecinmir-dotcom/ghost-skills/main/verification/v2.1/keys/keys.json",
+  "note": "The origin does not serve the intended URL yet. That is a production change and has not been made.",
+  "policy": {
+    "algorithm": "ed25519",
+    "max_signatures_per_receipt": 1,
+    "keyid_derivation": "\"ed25519:\" + sha256(raw_32_byte_public_key).hexdigest()[:32]",
+    "scopes": {
+      "receipt": "may sign receipts under the production profile",
+      "fixture": "synthetic only; refused under the production profile",
+      "facilitator": "may sign settlement evidence; may never sign a receipt"
+    },
+    "not_after": "null means open-ended. 0 means expired at the epoch. They are different and a verifier must not conflate them.",
+    "rotation": "Publish the replacement with a future not_before while the predecessor keeps a not_after at or after that moment, so the windows overlap.",
+    "retirement": "A retired key is never removed. signed_at is checked against the key window, not the clock, so historical receipts stay verifiable.",
+    "revocation": "status=revoked with revoked_at. Receipts signed at or after that moment are refused; earlier ones are refused too unless revoked_at is set."
+  },
+  "keys": [
+    {
+      "keyid": "ed25519:7099881747dbeb09281700d24375d46b",
+      "algorithm": "ed25519",
+      "status": "active",
+      "use": "receipt",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA5axYjSRfyfe9I9nZK4HqOAroMSfl1pqvW6m4hiUsiaE=\n-----END PUBLIC KEY-----\n",
+      "comment": "Ghost production receipt key"
+    },
+    {
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "algorithm": "ed25519",
+      "status": "active",
+      "use": "receipt",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAA6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC receipt-scope key for these fixtures"
+    },
+    {
+      "keyid": "ed25519:65b60673d6ed884bf01c2c222d82ada0",
+      "algorithm": "ed25519",
+      "status": "active",
+      "use": "fixture",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAebVWLo/mVPlAeLES6KmLp5AfhTrmlb7X4OORC60ElmQ=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC fixture-scope key. Must be refused under the production profile."
+    },
+    {
+      "keyid": "ed25519:947561e3eb43b38b2d5f7c2f6a74f30b",
+      "algorithm": "ed25519",
+      "status": "active",
+      "use": "facilitator",
+      "not_before": 0,
+      "not_after": null,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAQ83AI9ItX54QfRoGk0V9NdHRDrfSHHIRkvVvXeQGZdM=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC facilitator key. Signs settlement evidence, never receipts."
+    },
+    {
+      "keyid": "ed25519:68e406588623047d198c81d70f389bc6",
+      "algorithm": "ed25519",
+      "status": "retired",
+      "use": "receipt",
+      "not_before": 0,
+      "not_after": 1789000000.0,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEASB7edy2hV4XJ5ZoIYgG4w/nDBxKeP8bX80qk3+1YFOU=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC retired key. Valid only for signed_at at or before not_after."
+    },
+    {
+      "keyid": "ed25519:95f61db998b13f8fa19da82a7643dd6e",
+      "algorithm": "ed25519",
+      "status": "revoked",
+      "use": "receipt",
+      "not_before": 0,
+      "not_after": null,
+      "revoked_at": 1789100000.0,
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAUZmMz9//2D2XJEkIGMoiqXoDDRi7Kp10Zo9yuBw/pYg=\n-----END PUBLIC KEY-----\n",
+      "comment": "SYNTHETIC revoked key. Always refused."
+    }
+  ]
+}

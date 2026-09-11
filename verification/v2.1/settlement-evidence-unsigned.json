@@ -1,0 +1,8 @@
+{
+  "_type": "ghost-settlement-evidence/v1 (SYNTHETIC)",
+  "tx_hash": "0x2f1c9a7b4e6d08135a7c4b2e9f0d6a3c8b5e1d7f4a2c9b6e3d0f8a5c2b7e4d19",
+  "to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "network": "eip155:8453",
+  "amount_minor": "10000"
+}

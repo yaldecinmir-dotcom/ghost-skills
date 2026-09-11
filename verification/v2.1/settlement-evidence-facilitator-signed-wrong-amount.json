@@ -1,0 +1,10 @@
+{
+  "payload": "eyJfdHlwZSI6ICJnaG9zdC1zZXR0bGVtZW50LWV2aWRlbmNlL3YxIChTWU5USEVUSUMpIiwgImFtb3VudF9taW5vciI6ICIxMDAwMDAwIiwgImFzc2V0IjogIjB4ODMzNTg5ZkNENmVEYjZFMDhmNGM3QzMyRDRmNzFiNTRiZEEwMjkxMyIsICJuZXR3b3JrIjogImVpcDE1NTo4NDUzIiwgInRvIjogIjB4MjZjNTM2RjlGQjUwZDVCZDNmNmVGRTQ3Mzg4MDdkODhFMjNGQTEzZSIsICJ0eF9oYXNoIjogIjB4MmYxYzlhN2I0ZTZkMDgxMzVhN2M0YjJlOWYwZDZhM2M4YjVlMWQ3ZjRhMmM5YjZlM2QwZjhhNWMyYjdlNGQxOSJ9",
+  "payloadType": "application/vnd.ghost.attestation+json",
+  "signatures": [
+    {
+      "keyid": "ed25519:947561e3eb43b38b2d5f7c2f6a74f30b",
+      "sig": "b6gNHVkf6hrdujCyt/M95h+6p/GDYQGw8qDmFiq+QfL1SXEke+V/jrnAeh5p9lBi0b/yLDVu9uY710m1qwZWAQ=="
+    }
+  ]
+}

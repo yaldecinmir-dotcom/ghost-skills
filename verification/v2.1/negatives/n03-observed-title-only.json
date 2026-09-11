@@ -1,0 +1,185 @@
+{
+  "fixture": "ghost/dsse-receipt-verification-fixture/v2.1#n03-observed-title-only",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC TEST VECTOR. No payment occurred. Synthetic keys only.",
+  "generated_at_utc": "2026-09-11",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 makbuz do\u011frulama caf\u00e9",
+      "results": 3
+    }
+  },
+  "http_response_status": 200,
+  "http_response_body": {
+    "query": "x402 makbuz do\u011frulama caf\u00e9",
+    "results": [
+      {
+        "title": "REWRITTEN TITLE",
+        "url": "https://example.org/a",
+        "snippet": "A seller receipt binds the operation, not the discovery path.",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "DSSE for payment receipts",
+        "url": "https://example.net/b",
+        "snippet": "Pre-Authentication Encoding binds the payload type.",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "x402 v2 header terms",
+        "url": "https://example.com/c",
+        "snippet": "Payment requirements travel in the PAYMENT-REQUIRED header.",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": {
+      "text": "Terms travel in the header.",
+      "source": "https://example.com/c"
+    },
+    "knowledge": {
+      "title": "x402",
+      "type": "protocol"
+    },
+    "related_questions": [
+      "what is x402"
+    ],
+    "related_searches": [
+      "x402 receipt"
+    ],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIuMSIsICJvcGVyYXRpb25faWQiOiAiZ29wX2IyYzNkNGU1ZjYwNzE4MjkzYTRiNWM2ZDdlOGY5MDAxIiwgIm9yYWNsZV92ZXJkaWN0IjogeyJkZXRlcm1pbmlzdGljIjogdHJ1ZSwgIm9yYWNsZSI6ICJ2ZXJpZmllZC13ZWItc2VhcmNoL3YxIiwgInZlcmRpY3QiOiAiREVMSVZFUkVEIn0sICJwYXltZW50IjogeyJhc3NldCI6ICIweDgzMzU4OWZDRDZlRGI2RTA4ZjRjN0MzMkQ0ZjcxYjU0YmRBMDI5MTMiLCAiY2xhaW1lZF9hbW91bnQiOiAiMC4wMSIsICJjbGFpbWVkX2Ftb3VudF9taW5vciI6ICIxMDAwMCIsICJjdXJyZW5jeSI6ICJVU0RDIiwgIm5ldHdvcmsiOiAiZWlwMTU1Ojg0NTMiLCAibm90ZSI6ICJBIHNlbGxlciBhc3NlcnRpb24uIE5vdCBldmlkZW5jZS4iLCAicGF5X3RvIjogIjB4MjZjNTM2RjlGQjUwZDVCZDNmNmVGRTQ3Mzg4MDdkODhFMjNGQTEzZSIsICJyYWlsIjogIng0MDItZXhhY3QiLCAic2V0dGxlbWVudF9yZWZlcmVuY2UiOiAiMHgyZjFjOWE3YjRlNmQwODEzNWE3YzRiMmU5ZjBkNmEzYzhiNWUxZDdmNGEyYzliNmUzZDBmOGE1YzJiN2U0ZDE5IiwgInN0YXRlIjogIkNMQUlNRUQifSwgInByb2ZpbGUiOiB7ImNhbm9uaWNhbGlzYXRpb24iOiAiUkZDIDg3ODUgSkNTIG92ZXIgVVRGLTgiLCAibWF4X3NpZ25hdHVyZXMiOiAxLCAic2lnbmF0dXJlX2FsZ29yaXRobSI6ICJlZDI1NTE5In0sICJwcm92ZW5hbmNlIjogeyJhdHRlbXB0cyI6IFt7ImVsYXBzZWRfbXMiOiA4MTIsICJvdXRjb21lIjogIkRFTElWRVJFRCIsICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9XSwgInByb3ZpZGVyIjogInNlcnBpbmdhcGkuY29tIn0sICJyZWNlaXB0X2lkIjogImdyY19iMmMzZDRlNWY2MDcxODI5M2E0YjVjNmQ3ZThmOTAwMSIsICJyZXF1ZXN0IjogeyJleGFjdF9yZXNvdXJjZV91cmwiOiAiaHR0cHM6Ly9naG9zdC1pZGVudGl0eS5naG9zdC1hZ2VudC1vcy53b3JrZXJzLmRldi92MS9zZWFyY2giLCAiZmluZ2VycHJpbnQiOiAic2hhMjU2OjQ0ZjQzNmIxNjI2ZDg5Zjc5MWUxYmRmNGYzOWIyOTgxODU2ZjVhYTM3YTE1NTQ1ZTVmNjUwOTRlNThjN2VhY2MiLCAibWV0aG9kIjogIlBPU1QiLCAic3Vic2V0IjogeyJjb3VudHJ5IjogIiIsICJsYW5ndWFnZSI6ICIiLCAicXVlcnkiOiAieDQwMiBtYWtidXogZG9cdTAxMWZydWxhbWEgY2FmXHUwMGU5IiwgInJlc3VsdHMiOiAzfSwgInN1YnNldF9kZWZhdWx0cyI6IHsiY291bnRyeSI6ICIiLCAibGFuZ3VhZ2UiOiAiIiwgInF1ZXJ5IjogIiIsICJyZXN1bHRzIjogMTB9LCAic3Vic2V0X2ZpZWxkcyI6IFsicXVlcnkiLCAicmVzdWx0cyIsICJjb3VudHJ5IiwgImxhbmd1YWdlIl19LCAicmVzcG9uc2UiOiB7ImZpbmdlcnByaW50IjogInNoYTI1NjpkMjA2ODFjMzk4YWI0ZmU1OTBmY2M5YjY0YTY1OWU0YTFjZTJkYjBiMmFkNDZhYzVhNjJiMjA0MmUxNmFiYzBjIiwgInN0YXR1cyI6IDIwMCwgInN1YnNldCI6IHsiY29udGVudF9kaWdlc3QiOiAic2hhMjU2Ojk3ZDNhNDM0YzhiNWI1MGRlMmIxNDU1OTQxZTExZTVhMmEwOTZjNGU3MTQ1NDViYjBkMjUxOTQ1OGI1YjNhNDkiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20iLCAicmVzdWx0X2NvdW50IjogMywgInVybHMiOiBbImh0dHBzOi8vZXhhbXBsZS5vcmcvYSIsICJodHRwczovL2V4YW1wbGUubmV0L2IiLCAiaHR0cHM6Ly9leGFtcGxlLmNvbS9jIl19LCAic3Vic2V0X2ZpZWxkcyI6IFsicHJvdmlkZXIiLCAicmVzdWx0X2NvdW50IiwgInVybHMiLCAiY29udGVudF9kaWdlc3QiXX0sICJzZWxsZXIiOiB7ImRvbWFpbiI6ICJnaG9zdC1pZGVudGl0eS5naG9zdC1hZ2VudC1vcy53b3JrZXJzLmRldiIsICJrZXlpZCI6ICJlZDI1NTE5OjU2NDc1YWE3NTQ2MzQ3NGMwMjg1ZGY1ZGJmMmJjYWI3IiwgInBheV90byI6ICIweDI2YzUzNkY5RkI1MGQ1QmQzZjZlRkU0NzM4ODA3ZDg4RTIzRkExM2UifSwgInNlcnZlZF9hdCI6IDE3ODkxMzA5OTguOCwgInNpZ25lZF9hdCI6IDE3ODkxMzEwMDAuMH0=",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "+zvznrhwflWiCXPZA7PiVpVBKtvGxwM/f+IWQT7nLnyrzUPaswmulLuZpqOIEVpsR6rGV2ywo9KshnKqQNNeAw=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    },
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "rail": "x402-per-call",
+      "payments_required": 1
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v2.1",
+    "operation_id": "gop_b2c3d4e5f60718293a4b5c6d7e8f9001",
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "claimed_amount": "0.01",
+      "claimed_amount_minor": "10000",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "note": "A seller assertion. Not evidence.",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e",
+      "rail": "x402-exact",
+      "settlement_reference": "0x2f1c9a7b4e6d08135a7c4b2e9f0d6a3c8b5e1d7f4a2c9b6e3d0f8a5c2b7e4d19",
+      "state": "CLAIMED"
+    },
+    "profile": {
+      "canonicalisation": "RFC 8785 JCS over UTF-8",
+      "max_signatures": 1,
+      "signature_algorithm": "ed25519"
+    },
+    "provenance": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "receipt_id": "grc_b2c3d4e5f60718293a4b5c6d7e8f9001",
+    "request": {
+      "exact_resource_url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+      "fingerprint": "sha256:44f436b1626d89f791e1bdf4f39b2981856f5aa37a15545e5f65094e58c7eacc",
+      "method": "POST",
+      "subset": {
+        "country": "",
+        "language": "",
+        "query": "x402 makbuz do\u011frulama caf\u00e9",
+        "results": 3
+      },
+      "subset_defaults": {
+        "country": "",
+        "language": "",
+        "query": "",
+        "results": 10
+      },
+      "subset_fields": [
+        "query",
+        "results",
+        "country",
+        "language"
+      ]
+    },
+    "response": {
+      "fingerprint": "sha256:d20681c398ab4fe590fcc9b64a659e4a1ce2db0b2ad46ac5a62b2042e16abc0c",
+      "status": 200,
+      "subset": {
+        "content_digest": "sha256:97d3a434c8b5b50de2b1455941e11e5a2a096c4e714545bb0d2519458b5b3a49",
+        "provider": "serpingapi.com",
+        "result_count": 3,
+        "urls": [
+          "https://example.org/a",
+          "https://example.net/b",
+          "https://example.com/c"
+        ]
+      },
+      "subset_fields": [
+        "provider",
+        "result_count",
+        "urls",
+        "content_digest"
+      ]
+    },
+    "seller": {
+      "domain": "ghost-identity.ghost-agent-os.workers.dev",
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+      "pay_to": "0x26c536F9FB50d5Bd3f6eFE4738807d88E23FA13e"
+    },
+    "served_at": 1789130998.8,
+    "signed_at": 1789131000.0
+  },
+  "negative_test": "n03-observed-title-only",
+  "expected_result": {
+    "RESPONSE_BINDING": "FAIL",
+    "DELIVERED_CONTENT": "differs",
+    "exit": 1,
+    "note": "v2 passed this; the content digest closes it."
+  }
+}
