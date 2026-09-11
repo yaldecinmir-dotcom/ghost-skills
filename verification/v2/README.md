@@ -98,8 +98,8 @@ signed while it was valid must stay verifiable forever, which is why the verifie
 is marked revoked instead, and receipts signed after that moment are rejected.
 
 The intended home is `/.well-known/ghost-receipt-keys.json` on the origin. **The origin
-does not serve it yet.** That is a production change and has not been made, so this file
-is the interim discovery point.
+did not serve it when this fixture was published.** It does now, as of 2026-09-11:
+`/.well-known/ghost-receipt-keys.json`. See Current production status below.
 
 ## Open gaps, carried forward not hidden
 
@@ -119,3 +119,24 @@ changes that have not been made:
 6. No key-discovery endpoint on the origin, as above.
 
 v1 additionally noted that `served_at` was not `signed_at`. v2 carries both.
+
+---
+
+## Current production status (2026-09-12)
+
+This section is the live truth. Everything above it is the historical record of what was
+verified at the time and is left unedited on purpose.
+
+| | |
+|---|---|
+| Production receipt format | **v1** (`ghost-verified-web-search-receipt/v1`) |
+| v2.1 | **synthetic review fixture. NOT the production receipt** |
+| Supported production verifier | [`verification/production-v1/`](../production-v1/PRODUCTION-V1-VERIFICATION.md) |
+| Origin key discovery | **LIVE** at `/.well-known/ghost-receipt-keys.json` |
+| Failure contract | **LIVE** at `/.well-known/ghost-502-contract.json` |
+| Payment flow | **upfront**, advertised in the 402 as `extra.paymentFlow` |
+| Signed timestamp | v1 signs `served_at`; v2.1 signs `signed_at`; selected by `_type`, no fallback |
+| Revocation | **HARD**: a revoked key's receipts are refused whatever timestamp they carry |
+| The six production gaps reported by x402-lab | **closed** |
+
+The verifier in this directory is **unsupported**. Use the production-v1 one above.

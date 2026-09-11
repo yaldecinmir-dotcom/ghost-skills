@@ -1,0 +1,107 @@
+{
+  "fixture": "ghost/production-v1-receipt-fixture/v1",
+  "SYNTHETIC": true,
+  "warning": "SYNTHETIC. Produced by the unmodified production receipt function with a synthetic key, so the SCHEMA is exactly production's. No payment occurred.",
+  "http_request": {
+    "method": "POST",
+    "url": "https://ghost-identity.ghost-agent-os.workers.dev/v1/search",
+    "body": {
+      "query": "x402 receipt verification",
+      "results": 3
+    }
+  },
+  "http_response_status": 200,
+  "http_response_body": {
+    "query": "x402 receipt verification",
+    "results": [
+      {
+        "title": "A",
+        "url": "https://example.org/a",
+        "snippet": "one",
+        "position": 1,
+        "published": ""
+      },
+      {
+        "title": "B",
+        "url": "https://example.net/b",
+        "snippet": "two",
+        "position": 2,
+        "published": ""
+      },
+      {
+        "title": "C",
+        "url": "https://example.com/c",
+        "snippet": "three",
+        "position": 3,
+        "published": ""
+      }
+    ],
+    "answer": null,
+    "knowledge": null,
+    "related_questions": [],
+    "related_searches": [],
+    "provider": "serpingapi.com",
+    "result_count": 3,
+    "provenance": {
+      "provider": "serpingapi.com",
+      "upstream": "google-serp"
+    },
+    "attempts": [
+      {
+        "provider": "serpingapi.com",
+        "outcome": "DELIVERED",
+        "elapsed_ms": 812
+      }
+    ],
+    "billing": {
+      "fee": {
+        "amount": "0.01",
+        "amount_minor": 10000,
+        "currency": "USDC"
+      },
+      "rail": "x402-per-call",
+      "payments_required": 1
+    },
+    "receipt": {
+      "signed": true,
+      "envelope": {
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjEiLCAiYXR0cmlidXRlcyI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAib3JhY2xlX3ZlcmRpY3QiOiB7ImRldGVybWluaXN0aWMiOiB0cnVlLCAib3JhY2xlIjogInZlcmlmaWVkLXdlYi1zZWFyY2gvdjEiLCAidmVyZGljdCI6ICJERUxJVkVSRUQifSwgInBheW1lbnQiOiB7ImNvbmZpcm1hdGlvbnMiOiAwLCAiZXZpZGVuY2VfY2xhc3MiOiAiTElWRV9VTlBBSUQiLCAicmVmZXJlbmNlIjogIiIsICJzdGF0dXMiOiAiTk9UX0NPTk5FQ1RFRCJ9LCAicmVxdWVzdF9maW5nZXJwcmludCI6ICJzaGEyNTY6NDA1ZmRjZTgzMWM3OTY3NGQwZjk5MzI1YTE2Y2UxYWQ2NmZjMjk5MTU0ZWJlNzczNWY3ZDM0NjQyZDhjOGRiMyIsICJyZXNwb25zZV9maW5nZXJwcmludCI6ICJzaGEyNTY6MDI5NGE1OWIxNzAzZGM0ODJkNzg0MGQ4YjNjN2U2MThhOTE5NDY0ZDk3N2EzZGJhNDMwMDhhYzI4OTQ2ODE4MiIsICJzZXJ2ZWRfYXQiOiAxNzg5MjAwMDAwLjB9",
+        "payloadType": "application/vnd.ghost.attestation+json",
+        "signatures": [
+          {
+            "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
+            "sig": "IcRaPQI7KO8Qgmwn/v8yP0/bP6KC51m5Dny7D7ZAobCTcuX1MnAzKQpeeS6AYQr4EQ62+p4uKYTz6jpNvZsLCw=="
+          }
+        ]
+      },
+      "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7"
+    }
+  },
+  "decoded_payload": {
+    "_type": "ghost-verified-web-search-receipt/v1",
+    "attributes": {
+      "attempts": [
+        {
+          "elapsed_ms": 812,
+          "outcome": "DELIVERED",
+          "provider": "serpingapi.com"
+        }
+      ],
+      "provider": "serpingapi.com"
+    },
+    "oracle_verdict": {
+      "deterministic": true,
+      "oracle": "verified-web-search/v1",
+      "verdict": "DELIVERED"
+    },
+    "payment": {
+      "confirmations": 0,
+      "evidence_class": "LIVE_UNPAID",
+      "reference": "",
+      "status": "NOT_CONNECTED"
+    },
+    "request_fingerprint": "sha256:405fdce831c79674d0f99325a16ce1ad66fc299154ebe7735f7d34642d8c8db3",
+    "response_fingerprint": "sha256:0294a59b1703dc482d7840d8b3c7e618a919464d977a3dba43008ac289468182",
+    "served_at": 1789200000.0
+  }
+}

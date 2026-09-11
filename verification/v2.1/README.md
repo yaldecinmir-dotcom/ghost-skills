@@ -26,7 +26,7 @@ node verify_vectors.js      # 6 canonicalisation vectors, 0 failed
 | | v2 | v2.1 |
 |---|---|---|
 | Fixture key signing a production receipt | accepted | key scopes plus an enforced `--profile` |
-| Revoked key | no concept | refused |
+| Revoked key | no concept | refused when `signed_at >= revoked_at`, or when no `revoked_at` is given (see note) |
 | Retired key | no concept | accepted only for `signed_at` inside its window |
 | Hand-written settlement file | produced **SETTLED** | produces `SETTLEMENT_EVIDENCE_MATCHED`; state stays CLAIMED |
 | Signer choosing what is bound | allowed | fixed profile, exact field lists |
@@ -76,8 +76,9 @@ keeps a `not_after` at or after that moment. **A retired key is never removed**,
 `signed_at` is checked against the key window rather than the clock, so historical receipts
 stay verifiable forever. `n14` is the positive control for exactly that.
 
-The intended home is `/.well-known/ghost-receipt-keys.json` on the origin, **which is not
-served yet**. That is a production change and has not been made.
+The intended home is `/.well-known/ghost-receipt-keys.json` on the origin. **It is served
+as of 2026-09-11**, and it carries the production key plus the version-aware timestamp
+policy and the hard-revocation rule. See Current production status below.
 
 ## Canonicalisation
 
@@ -108,6 +109,21 @@ the EIP-3009 payer and nonce, and the settlement transaction. **None of it is bu
 `receipt_id` and `operation_id` distinguish two otherwise identical searches and are not
 payment evidence.
 
+## A note on revocation, added 2026-09-12
+
+This fixture's verifier refuses a revoked key when the statement's `signed_at` is at or
+after `revoked_at`, and accepts it before that moment. The table above previously summed
+that up as "refused", which was imprecise.
+
+**Production does not follow that rule.** The live key policy is HARD revocation: every
+receipt signed by a revoked key is refused whatever timestamp it carries. The reasoning is
+that the only timestamp available is the seller-asserted one inside the statement, so a
+holder of a compromised key can sign a statement dated before the revocation. Accepting
+pre-revocation receipts would accept exactly the forgeries revocation exists to stop.
+
+The fixture is left unchanged as published evidence; the production rule is the one that
+governs live receipts, and it is stated in the live key document.
+
 ## Still open
 
 Unchanged from v2, all requiring production changes that have not been made: the OpenAPI
@@ -117,3 +133,24 @@ web-search product; there is no published 502 schema; failure credit is not rede
 first-time payer, because the balance is posted against the payer address while spending
 requires a token that is only minted at the explicit top-up endpoint; and there is no
 key-discovery endpoint on the origin.
+
+---
+
+## Current production status (2026-09-12)
+
+This section is the live truth. Everything above it is the historical record of what was
+verified at the time and is left unedited on purpose.
+
+| | |
+|---|---|
+| Production receipt format | **v1** (`ghost-verified-web-search-receipt/v1`) |
+| v2.1 | **synthetic review fixture. NOT the production receipt** |
+| Supported production verifier | [`verification/production-v1/`](../production-v1/PRODUCTION-V1-VERIFICATION.md) |
+| Origin key discovery | **LIVE** at `/.well-known/ghost-receipt-keys.json` |
+| Failure contract | **LIVE** at `/.well-known/ghost-502-contract.json` |
+| Payment flow | **upfront**, advertised in the 402 as `extra.paymentFlow` |
+| Signed timestamp | v1 signs `served_at`; v2.1 signs `signed_at`; selected by `_type`, no fallback |
+| Revocation | **HARD**: a revoked key's receipts are refused whatever timestamp they carry |
+| The six production gaps reported by x402-lab | **closed** |
+
+The verifier in this directory is **unsupported**. Use the production-v1 one above.

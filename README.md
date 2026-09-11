@@ -88,6 +88,10 @@ full page content. $0.01 per search for 1–100 results.
 
 ## Verify a receipt before you pay
 
+**Production emits receipt v1.** The supported way to verify a receipt from the
+live origin is [`verification/production-v1/`](verification/production-v1/PRODUCTION-V1-VERIFICATION.md).
+Keys are published by the origin at `/.well-known/ghost-receipt-keys.json`.
+
 Ghost's DSSE receipt format has a public test vector, with the decoded payload, both
 public keys, the canonicalisation rules, a standalone verifier and tamper fixtures.
 

@@ -193,9 +193,31 @@ produce this fixture.
 3. `MISSING_BINDING = http_method` and `MISSING_BINDING = canonical_resource_url`.
 4. `MISSING_BINDING = full_response_body` — snippets and titles are outside the commitment.
 5. No key-discovery endpoint on the origin. This file is the only key distribution.
+   **(Closed 2026-09-11: the origin now serves `/.well-known/ghost-receipt-keys.json`. See Current production status below.)**
 6. `served_at` is not `signed_at`, which is the field name Ghost's own DSSE verifier
    expects for its freshness check. A generic verifier must either skip the freshness check
    or read `served_at`.
 
 Feedback on which of these matter for a cross-seller fixture is welcome on the issue that
 prompted this vector.
+
+---
+
+## Current production status (2026-09-12)
+
+This section is the live truth. Everything above it is the historical record of what was
+verified at the time and is left unedited on purpose.
+
+| | |
+|---|---|
+| Production receipt format | **v1** (`ghost-verified-web-search-receipt/v1`) |
+| v2.1 | **synthetic review fixture. NOT the production receipt** |
+| Supported production verifier | [`verification/production-v1/`](production-v1/PRODUCTION-V1-VERIFICATION.md) |
+| Origin key discovery | **LIVE** at `/.well-known/ghost-receipt-keys.json` |
+| Failure contract | **LIVE** at `/.well-known/ghost-502-contract.json` |
+| Payment flow | **upfront**, advertised in the 402 as `extra.paymentFlow` |
+| Signed timestamp | v1 signs `served_at`; v2.1 signs `signed_at`; selected by `_type`, no fallback |
+| Revocation | **HARD**: a revoked key's receipts are refused whatever timestamp they carry |
+| The six production gaps reported by x402-lab | **closed** |
+
+The verifier in this directory is **unsupported**. Use the production-v1 one above.
