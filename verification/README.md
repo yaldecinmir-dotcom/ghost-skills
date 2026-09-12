@@ -1,4 +1,25 @@
-# Ghost receipt verification fixture
+# Ghost receipt verification fixture (v1, HISTORICAL)
+
+> ## Do not use this directory to verify a production receipt
+>
+> **Supported production verifier:**
+> [`production-v1/verify_ghost_receipt_v1_production.py`](production-v1/verify_ghost_receipt_v1_production.py)
+> — procedure: [`production-v1/PRODUCTION-V1-VERIFICATION.md`](production-v1/PRODUCTION-V1-VERIFICATION.md)
+>
+> ```bash
+> cd production-v1
+> python3 verify_ghost_receipt_v1_production.py your-receipt.json
+> ```
+>
+> **`verify_ghost_receipt.py` in this directory is HISTORICAL and UNSUPPORTED.** It
+> recomputes its fingerprints from a `recomputation_inputs` block carried inside the
+> bundle instead of from the observed HTTP exchange, so editing only the observed request
+> or a returned result URL still exits 0. Merit Systems reported that on 2026-09-11 and it
+> is reproducible. The file and its fixtures are kept unchanged as the record of what was
+> published and reviewed at the time. **Never run it against a real receipt.**
+>
+> Keys for real receipts come from the origin, not from this directory:
+> `https://ghost-identity.ghost-agent-os.workers.dev/.well-known/ghost-receipt-keys.json`
 
 A public, non-sensitive test vector for the DSSE receipt that Ghost Verified Web Search
 returns in the `receipt` field of every paid response. It exists so a buyer can verify the
@@ -18,7 +39,7 @@ are the real ones, not a hand-written illustration.
 | File | What it is |
 |---|---|
 | `receipt-fixture.json` | The canonical vector: HTTP request, full response body, DSSE envelope, decoded payload, and the two fingerprint preimages |
-| `verify_ghost_receipt.py` | Standalone verifier, ~120 lines, `cryptography` only, no Ghost imports |
+| `verify_ghost_receipt.py` | **HISTORICAL, UNSUPPORTED.** The v1 fixture verifier, kept as published. Superseded by [`production-v1/`](production-v1/PRODUCTION-V1-VERIFICATION.md) |
 | `keys/fixture-synthetic.pub.pem` | Public key for this fixture. Verifies the vector below |
 | `keys/ghost-production.pub.pem` | Public key for real Ghost receipts served from production |
 | `negatives/*.json` | Five tamper fixtures |
@@ -137,10 +158,15 @@ response : {"provider": "serpingapi.com", "result_count": 3,
 `SIGNATURE_VALID != PURCHASE_VERIFIED`, and on the amount and settlement axes Ghost's
 current receipt does not close the gap.
 
-## Verify
+## Verify (HISTORICAL REPRODUCTION ONLY — not a production verification path)
+
+The command below reproduces what reviewers ran against this fixture in September 2026.
+It is here so that record stays reproducible. **It must not be used to verify a receipt
+from the live origin**; see the banner at the top of this file for the supported path.
 
 ```bash
 pip install cryptography
+# HISTORICAL: reproduces the reviewed v1 fixture run. Not for production receipts.
 python3 verify_ghost_receipt.py receipt-fixture.json keys/fixture-synthetic.pub.pem
 ```
 
