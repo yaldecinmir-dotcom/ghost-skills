@@ -29,7 +29,16 @@ A production v1 statement signs **`served_at`** and does **not** contain `signed
 earlier revision of the published key policy described `signed_at`, which is v2.1's field,
 and applying it to a v1 receipt would have rejected every honest receipt the origin emits.
 
-The rule is now version-specific and lives in the live key document under
+**This verifier supports exactly one statement type:** `ghost-verified-web-search-receipt/v1`.
+Production also emits `ghost-verified-search-receipt/v1` and `ghost-service-receipt/v2`;
+both are **refused** here with an explicit reason. An earlier revision accepted them,
+verified the signature, skipped their bindings with a note, and still printed
+`PAYLOAD_BOUND`, so a genuinely signed receipt of either type verified after the observed
+query and result URLs were rewritten. A verifier must never claim a binding it did not
+recompute. `n7` and `n8` pin that, and `run_tests.py` asserts that `PAYLOAD_BOUND` cannot
+appear in any output unless both binding lines were printed as `ok`.
+
+The timestamp rule is version-specific and lives in the live key document under
 `timestamp_policy`:
 
 | Statement type | Signed timestamp field |
@@ -110,5 +119,7 @@ no real payment or key is involved.
 | `n4-edited-signed-payload` | **fail** | payload edited after signing | 2 |
 | `n5-no-signed-timestamp` | valid | refused: v1 must sign `served_at` | 2 |
 | `n6-v21-statement-in-production-verifier` | valid | refused: wrong statement type | 2 |
+| `n7-verified-search-receipt-v1-unsupported` | valid | refused: production type whose bindings this tool does not implement | 2 |
+| `n8-service-receipt-v2-unsupported` | valid | refused: same | 2 |
 
 `n1` and `n2` are the cases the unsupported v1 fixture verifier passes.

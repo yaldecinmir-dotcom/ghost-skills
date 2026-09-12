@@ -38,18 +38,25 @@ PAYLOAD_TYPE = "application/vnd.ghost.attestation+json"
 ORIGIN = "https://ghost-identity.ghost-agent-os.workers.dev"
 KEY_DISCOVERY = f"{ORIGIN}/.well-known/ghost-receipt-keys.json"
 
-#: The signed timestamp field, per statement type. Selected by `_type` and never guessed:
-#: v1 signs `served_at` and carries no `served_at`-to-`signed_at` fallback, and a verifier
-#: that tried both would accept a statement with no trustworthy time as though it had one.
-TIMESTAMP_FIELD = {
-    "ghost-verified-web-search-receipt/v1": "served_at",
-    "ghost-verified-search-receipt/v1": "served_at",
-    "ghost-service-receipt/v2": "served_at",
-}
-
-#: What each v1 statement type commits to. v1 has no declared field list of its own, so
-#: the preimages are fixed here and must match the producing code exactly.
+#: The ONE statement type this verifier supports, and the timestamp field it signs.
+#: Selected by exact `_type` match and never guessed: v1 signs `served_at` and carries no
+#: `served_at`-to-`signed_at` fallback, and a verifier that tried both would accept a
+#: statement with no trustworthy time as though it had one.
 SEARCH_RECEIPT = "ghost-verified-web-search-receipt/v1"
+TIMESTAMP_FIELD = {SEARCH_RECEIPT: "served_at"}
+
+#: Production also emits these. They are REFUSED here, on purpose. An earlier revision of
+#: this file accepted them, checked the signature, skipped their bindings with a note, and
+#: still printed PAYLOAD_BOUND — so a validly signed receipt of either type verified even
+#: after the observed query and result URLs were rewritten. A verifier must never claim a
+#: binding it did not recompute. Until each type's complete binding profile is implemented
+#: from the producing code, the only honest answer is to stop.
+REFUSED_TYPES = {
+    "ghost-verified-search-receipt/v1":
+        "its request and response preimages are not implemented in this verifier",
+    "ghost-service-receipt/v2":
+        "its request and response preimages are not implemented in this verifier",
+}
 
 failures: list[str] = []
 
@@ -156,11 +163,18 @@ def main() -> int:
     ok("DSSE_SIGNATURE", f"{keyid} (use=receipt, status={trusted.get('status')})")
 
     statement_type = statement.get("_type")
+    if statement_type in REFUSED_TYPES:
+        fail("STATEMENT_TYPE", f"{statement_type!r} is a production statement type this "
+                               f"verifier does NOT support",
+             REFUSED_TYPES[statement_type],
+             "the signature above is genuine, and that is all this tool can say; no "
+             "binding was checked and none is claimed")
+        return 2
     field = TIMESTAMP_FIELD.get(statement_type)
     if field is None:
-        fail("STATEMENT_TYPE", f"{statement_type!r} is not a production v1 statement type",
-             "this tool verifies production receipts only; v2.1 fixtures use their own "
-             "verifier")
+        fail("STATEMENT_TYPE", f"{statement_type!r} is not a supported production "
+                               f"statement type; supported: {SEARCH_RECEIPT!r}",
+             "v2.1 fixtures use their own verifier")
         return 2
 
     # ---- timestamp: the field this version actually signs, with no fallback --------
@@ -192,6 +206,9 @@ def main() -> int:
     ok("KEY_VALIDITY", f"inside the window for a {trusted.get('status')} key")
 
     # ---- bindings, recomputed from the exchange you observed ----------------------
+    # Only SEARCH_RECEIPT reaches this point. `bindings_checked` is what licenses the word
+    # PAYLOAD_BOUND below; nothing else does.
+    bindings_checked = {"request": False, "response": False}
     if statement_type == SEARCH_RECEIPT:
         body = request.get("body") or {}
         if "query" not in body:
@@ -200,6 +217,7 @@ def main() -> int:
             observed = {"query": body.get("query"),
                         "results": body.get("results", 10)}
             got = fingerprint(observed)
+            bindings_checked["request"] = True
             if got == statement.get("request_fingerprint"):
                 ok("REQUEST_BINDING", statement["request_fingerprint"])
             else:
@@ -214,6 +232,7 @@ def main() -> int:
                     "result_count": response.get("result_count"),
                     "urls": [r.get("url") for r in results]}
         got = fingerprint(observed)
+        bindings_checked["response"] = True
         if got == statement.get("response_fingerprint"):
             ok("RESPONSE_BINDING", statement["response_fingerprint"])
         else:
@@ -233,9 +252,6 @@ def main() -> int:
                                   "answer box and the knowledge panel are outside the "
                                   "commitment. Only the URLs, the provider and the count "
                                   "are covered.")
-    else:
-        note("BINDINGS", f"{statement_type} carries its own preimages; this tool "
-                         f"recomputes the search receipt only")
 
     # ---- payment: v1 signs nothing that supports a conclusion ---------------------
     payment = statement.get("payment") or {}
@@ -251,6 +267,12 @@ def main() -> int:
     print()
     if failures:
         print("RESULT: REJECT   failed: " + ", ".join(dict.fromkeys(failures)))
+    elif not all(bindings_checked.values()):
+        # Unreachable by construction, kept as a guard: the success wording below must
+        # be impossible to print when either binding was not actually recomputed.
+        print("RESULT: REJECT   bindings not evaluated: "
+              + ", ".join(k for k, v in bindings_checked.items() if not v))
+        failures.append("BINDINGS_NOT_EVALUATED")
     else:
         print("RESULT: SIGNATURE_VALID + PAYLOAD_BOUND (v1 scope)")
         print("        Payment and settlement are NOT established by this receipt.")
