@@ -89,9 +89,43 @@ the epoch.
 | Settlement reference | **not signed**; the signed `payment` block on the search path reads `NOT_CONNECTED` / `LIVE_UNPAID` with an empty reference |
 
 Because v1 signs no amount and no settlement reference, this verifier **reports no payment
-conclusion at all**. It prints `PAYMENT_STATE NOT ESTABLISHED` and `SETTLEMENT NOT
-ESTABLISHED` rather than a state that could be misread as proof. The `billing` block in
-the response body sits outside the signature.
+conclusion at all**. It prints `PAYMENT_STATE NOT ESTABLISHED` and
+`SETTLEMENT_UNVERIFIED` rather than a state that could be misread as proof. The `billing`
+block in the response body sits outside the signature, so editing it changes nothing this
+tool checks — `n10` exists to prove exactly that.
+
+### What the signed payment block says, and why it says so little
+
+On the search path the block reads:
+
+```json
+"payment": {"status": "NOT_ATTESTED", "evidence_class": "NOT_ATTESTED_BY_RECEIPT",
+            "reference": "", "confirmations": 0}
+```
+
+It reads that way on a **real, settled** production call too. Ghost settles upfront, so by
+the time this receipt is signed the money has almost always moved — and nothing in a v1
+statement binds that fact, so the statement declines to speak about it.
+
+Until 2026-09-12 the same block read `NOT_CONNECTED` / `LIVE_UNPAID`. That was not a
+cautious understatement, it was false: `NOT_CONNECTED` is defined as "the wallet is not a
+chain, so nothing here can be real money", and in production the wallet is connected and
+the money moved. A signed false statement is worse than a signed silence.
+
+The settlement transaction hash exists in the runtime and is **deliberately not copied
+in**. Putting it in a field the signature does not bind would dress runtime state as
+attested evidence, which is the exact confusion this whole document exists to prevent.
+`n9` is a genuinely signed receipt claiming `SETTLED` with a transaction hash, and the
+verifier refuses it on the rule: a seller cannot sign its way to settlement evidence.
+
+### The four conclusions, kept apart
+
+| Conclusion | v1 |
+|---|---|
+| `SIGNATURE_VALID` | who signed, under a key allowed to sign receipts. Nothing else |
+| `PAYLOAD_BOUND` | the request and response commitments recomputed from your own copy |
+| `DELIVERY_BOUND` | **partial**: provider, result count and URLs. Not titles, snippets, positions, answer box or knowledge panel |
+| `SETTLEMENT_UNVERIFIED` | **always**, for v1. Read the chain yourself |
 
 Ghost settles **upfront**, meaning the authorization settles before the search runs, so a
 settlement may well exist for a receipt this tool cannot evidence. Read the USDC transfer
@@ -119,6 +153,8 @@ no real payment or key is involved.
 | `n4-edited-signed-payload` | **fail** | payload edited after signing | 2 |
 | `n5-no-signed-timestamp` | valid | refused: v1 must sign `served_at` | 2 |
 | `n6-v21-statement-in-production-verifier` | valid | refused: wrong statement type | 2 |
+| `n9-receipt-claims-settled` | valid | refused on the rule: a v1 statement cannot support a settlement claim | 1 |
+| `n10-billing-edited-outside-the-signature` | valid | unchanged: billing is outside the signature and is not evidence | 0 |
 | `n7-verified-search-receipt-v1-unsupported` | valid | refused: production type whose bindings this tool does not implement | 2 |
 | `n8-service-receipt-v2-unsupported` | valid | refused: same | 2 |
 

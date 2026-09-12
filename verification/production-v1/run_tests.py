@@ -20,9 +20,20 @@ def run(name, path, want_exit):
     claims_bound = "PAYLOAD_BOUND" in out
     both_ok = "ok    REQUEST_BINDING" in out and "ok    RESPONSE_BINDING" in out
     invariant = (not claims_bound) or both_ok
-    good = r.returncode == want_exit and invariant
+
+    # v1 binds no settlement, so no run may ever CONCLUDE one. The word may appear where
+    # the tool quotes a statement's own field back (n9 does exactly that before refusing
+    # it), so this checks the conclusion lines rather than the whole text.
+    concluded_settled = any(
+        "SETTLED" in line and not line.lstrip().startswith("--")
+        for line in out.splitlines()
+        if line.startswith("RESULT:") or line.startswith("ok    "))
+    good = r.returncode == want_exit and invariant and not concluded_settled
+    if concluded_settled:
+        print(f"\n--- {name}: a v1 run concluded SETTLED, which v1 cannot support")
     rows.append((name, r.returncode, want_exit, claims_bound, both_ok,
                  "PASS" if good else "FAIL"))
+    del concluded_settled
     if not good:
         failed += 1
         print(f"\n--- {name}: exit {r.returncode} (want {want_exit}); "

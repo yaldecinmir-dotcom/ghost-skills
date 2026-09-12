@@ -14,13 +14,18 @@ was safe to point at one:
   verification/v2.1/...                  requires `signed_at` and the v2.1 statement
                                          type. A production v1 receipt has neither.
 
-Three conclusions, never merged:
+Four conclusions, never merged:
 
-  DSSE_SIGNATURE    who signed, under a key allowed to sign receipts.
-  PAYLOAD_BINDING   which exchange, recomputed from YOUR copy of request and response.
-  PAYMENT           v1 signs no amount and no settlement reference. This tool will not
-                    report a payment conclusion at all, because the statement contains
-                    nothing that would support one.
+  SIGNATURE_VALID        who signed, under a key allowed to sign receipts. Nothing more.
+  PAYLOAD_BOUND          which exchange, recomputed from YOUR copy of request and
+                         response.
+  DELIVERY_BOUND         what of the delivered answer is actually covered. In v1 that is
+                         the provider, the result count and the URLs — and NOT the
+                         titles, snippets, positions, answer box or knowledge panel.
+  SETTLEMENT_UNVERIFIED  always, for v1. The statement binds no amount, no currency and
+                         no settlement reference, so this tool cannot and will not report
+                         a payment as established. A payment may well have settled; read
+                         the chain yourself.
 """
 import argparse
 import base64
@@ -136,7 +141,7 @@ def main() -> int:
     listed = {k["keyid"]: k for k in document.get("keys", [])}
     trusted = listed.get(keyid)
     if trusted is None:
-        fail("DSSE_SIGNATURE", f"no key in the discovery document for {keyid!r}")
+        fail("SIGNATURE_VALID", f"no key in the discovery document for {keyid!r}")
         return 2
     if trusted.get("use") != "receipt":
         fail("KEY_SCOPE", f"key use {trusted.get('use')!r} may not sign receipts")
@@ -157,10 +162,11 @@ def main() -> int:
                                                    PAYLOAD_TYPE.encode(),
                                                    len(payload), payload))
     except InvalidSignature:
-        fail("DSSE_SIGNATURE", "does not verify over these payload bytes")
+        fail("SIGNATURE_VALID", "does not verify over these payload bytes")
         return 2
     statement = json.loads(payload)
-    ok("DSSE_SIGNATURE", f"{keyid} (use=receipt, status={trusted.get('status')})")
+    ok("SIGNATURE_VALID", f"{keyid} (use=receipt, status={trusted.get('status')}) "
+                          f"— establishes WHO signed, nothing else")
 
     statement_type = statement.get("_type")
     if statement_type in REFUSED_TYPES:
@@ -248,21 +254,30 @@ def main() -> int:
                 fail("PROVENANCE_BINDING",
                      f"signed provider={attributes['provider']}, body claims "
                      f"{response.get('provider')}")
-        note("DELIVERED_CONTENT", "NOT BOUND in v1 — titles, snippets, positions, the "
-                                  "answer box and the knowledge panel are outside the "
-                                  "commitment. Only the URLs, the provider and the count "
-                                  "are covered.")
+        ok("DELIVERY_BOUND", "PARTIAL — the provider, the result count and the URLs are "
+                             "covered")
+        note("DELIVERY_NOT_BOUND", "titles, snippets, positions, the answer box and the "
+                                   "knowledge panel are OUTSIDE the commitment and could "
+                                   "differ from what was signed")
 
     # ---- payment: v1 signs nothing that supports a conclusion ---------------------
     payment = statement.get("payment") or {}
-    note("PAYMENT_STATE", f"NOT ESTABLISHED — v1 signs no amount and no currency, and the "
-                          f"signed payment block here is status={payment.get('status')}, "
+    status = payment.get("status")
+    note("PAYMENT_STATE", f"NOT ESTABLISHED — v1 signs no amount and no currency. The "
+                          f"signed payment block reads status={status}, "
                           f"evidence_class={payment.get('evidence_class')}, "
                           f"reference={payment.get('reference')!r}")
-    note("SETTLEMENT", "NOT ESTABLISHED by this receipt. Ghost settles UPFRONT, so a "
-                       "settlement may exist and this statement does not evidence it. "
-                       "Read the USDC transfer on Base yourself.")
-    note("BILLING", "the `billing` block in the response body is OUTSIDE the signature")
+    if status not in ("NOT_ATTESTED", None):
+        # A v1 search receipt must decline to speak about payment. Anything else here is
+        # a claim the format cannot support.
+        fail("PAYMENT_CLAIM", f"the signed payment block claims status={status!r}, but "
+                              f"nothing in a v1 statement binds a settlement",
+             "expected NOT_ATTESTED")
+    note("SETTLEMENT_UNVERIFIED", "ALWAYS, for v1. Ghost settles UPFRONT, so a settlement "
+                                  "very likely exists — and this receipt does not evidence "
+                                  "it. Read the USDC transfer on Base yourself.")
+    note("BILLING", "the `billing` block in the response body is OUTSIDE the signature, "
+                    "so editing it changes nothing this tool checks")
 
     print()
     if failures:
@@ -274,7 +289,8 @@ def main() -> int:
               + ", ".join(k for k, v in bindings_checked.items() if not v))
         failures.append("BINDINGS_NOT_EVALUATED")
     else:
-        print("RESULT: SIGNATURE_VALID + PAYLOAD_BOUND (v1 scope)")
+        print("RESULT: SIGNATURE_VALID + PAYLOAD_BOUND + DELIVERY_BOUND(partial); "
+              "SETTLEMENT_UNVERIFIED")
         print("        Payment and settlement are NOT established by this receipt.")
     print("        SIGNATURE_VALID != PURCHASE_VERIFIED.")
     return 1 if failures else 0

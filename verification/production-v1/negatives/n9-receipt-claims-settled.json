@@ -1,5 +1,5 @@
 {
-  "fixture": "ghost/production-v1-receipt-fixture/v1#n2-observed-result-url-only",
+  "fixture": "ghost/production-v1-receipt-fixture/v1#n9-receipt-claims-settled",
   "SYNTHETIC": true,
   "warning": "SYNTHETIC. Produced by the unmodified production receipt function with a synthetic key, so the SCHEMA is exactly production's. No payment occurred.",
   "http_request": {
@@ -30,7 +30,7 @@
       },
       {
         "title": "C",
-        "url": "https://attacker.example/x",
+        "url": "https://example.com/c",
         "snippet": "three",
         "position": 3,
         "published": ""
@@ -65,12 +65,12 @@
     "receipt": {
       "signed": true,
       "envelope": {
-        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjEiLCAiYXR0cmlidXRlcyI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAib3JhY2xlX3ZlcmRpY3QiOiB7ImRldGVybWluaXN0aWMiOiB0cnVlLCAib3JhY2xlIjogInZlcmlmaWVkLXdlYi1zZWFyY2gvdjEiLCAidmVyZGljdCI6ICJERUxJVkVSRUQifSwgInBheW1lbnQiOiB7ImNvbmZpcm1hdGlvbnMiOiAwLCAiZXZpZGVuY2VfY2xhc3MiOiAiTk9UX0FUVEVTVEVEX0JZX1JFQ0VJUFQiLCAicmVmZXJlbmNlIjogIiIsICJzdGF0dXMiOiAiTk9UX0FUVEVTVEVEIn0sICJyZXF1ZXN0X2ZpbmdlcnByaW50IjogInNoYTI1Njo0MDVmZGNlODMxYzc5Njc0ZDBmOTkzMjVhMTZjZTFhZDY2ZmMyOTkxNTRlYmU3NzM1ZjdkMzQ2NDJkOGM4ZGIzIiwgInJlc3BvbnNlX2ZpbmdlcnByaW50IjogInNoYTI1NjowMjk0YTU5YjE3MDNkYzQ4MmQ3ODQwZDhiM2M3ZTYxOGE5MTk0NjRkOTc3YTNkYmE0MzAwOGFjMjg5NDY4MTgyIiwgInNlcnZlZF9hdCI6IDE3ODkyMDAwMDAuMH0=",
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjEiLCAiYXR0cmlidXRlcyI6IHsiYXR0ZW1wdHMiOiBbeyJlbGFwc2VkX21zIjogODEyLCAib3V0Y29tZSI6ICJERUxJVkVSRUQiLCAicHJvdmlkZXIiOiAic2VycGluZ2FwaS5jb20ifV0sICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9LCAib3JhY2xlX3ZlcmRpY3QiOiB7ImRldGVybWluaXN0aWMiOiB0cnVlLCAib3JhY2xlIjogInZlcmlmaWVkLXdlYi1zZWFyY2gvdjEiLCAidmVyZGljdCI6ICJERUxJVkVSRUQifSwgInBheW1lbnQiOiB7ImNvbmZpcm1hdGlvbnMiOiA2LCAiZXZpZGVuY2VfY2xhc3MiOiAiTElWRV9QQUlEIiwgInJlZmVyZW5jZSI6ICIweGFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWIiLCAic3RhdHVzIjogIlNFVFRMRUQifSwgInJlcXVlc3RfZmluZ2VycHJpbnQiOiAic2hhMjU2OjQwNWZkY2U4MzFjNzk2NzRkMGY5OTMyNWExNmNlMWFkNjZmYzI5OTE1NGViZTc3MzVmN2QzNDY0MmQ4YzhkYjMiLCAicmVzcG9uc2VfZmluZ2VycHJpbnQiOiAic2hhMjU2OjAyOTRhNTliMTcwM2RjNDgyZDc4NDBkOGIzYzdlNjE4YTkxOTQ2NGQ5NzdhM2RiYTQzMDA4YWMyODk0NjgxODIiLCAic2VydmVkX2F0IjogMTc4OTIwMDAwMC4wfQ==",
         "payloadType": "application/vnd.ghost.attestation+json",
         "signatures": [
           {
             "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
-            "sig": "SKxfzYw7wymreAnWdw8fQS+WB3W667evbEZhsGWcdcepVR1oNKWUA48pZSyQu9bE4L1YwBErjQheAqJtIw3YAQ=="
+            "sig": "G6LgBvMUvw/Ok8OSmsoaAC7/tDiy32lVKJR+GPWiqyS2iEsGItrkI91XdlK3Nwf6248DSNhsoGrJNbUNU4fXDA=="
           }
         ]
       },
@@ -95,19 +95,21 @@
       "verdict": "DELIVERED"
     },
     "payment": {
-      "confirmations": 0,
-      "evidence_class": "NOT_ATTESTED_BY_RECEIPT",
-      "reference": "",
-      "status": "NOT_ATTESTED"
+      "confirmations": 6,
+      "evidence_class": "LIVE_PAID",
+      "reference": "0xabababababababababababababababababababababababababababababababab",
+      "status": "SETTLED"
     },
     "request_fingerprint": "sha256:405fdce831c79674d0f99325a16ce1ad66fc299154ebe7735f7d34642d8c8db3",
     "response_fingerprint": "sha256:0294a59b1703dc482d7840d8b3c7e618a919464d977a3dba43008ac289468182",
     "served_at": 1789200000.0
   },
   "note_on_payment": "The signed payment block declines to speak about payment. This fixture is SYNTHETIC and unpaid, but the block reads identically on a real, settled production call: v1 binds no settlement evidence either way.",
-  "negative_test": "n2-observed-result-url-only",
+  "negative_test": "n9-receipt-claims-settled",
   "expected_result": {
-    "RESPONSE_BINDING": "FAIL",
-    "exit": 1
+    "SIGNATURE_VALID": "VALID",
+    "PAYMENT_CLAIM": "FAIL",
+    "exit": 1,
+    "note": "genuinely signed, refused on the rule: nothing in a v1 statement binds a settlement, so a v1 receipt may not claim one. A seller cannot sign its way to settlement evidence."
   }
 }

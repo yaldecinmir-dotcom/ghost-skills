@@ -65,12 +65,12 @@
     "receipt": {
       "signed": true,
       "envelope": {
-        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIuMSIsICJhdHRyaWJ1dGVzIjogeyJhdHRlbXB0cyI6IFt7ImVsYXBzZWRfbXMiOiA4MTIsICJvdXRjb21lIjogIkRFTElWRVJFRCIsICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9XSwgInByb3ZpZGVyIjogInNlcnBpbmdhcGkuY29tIn0sICJvcmFjbGVfdmVyZGljdCI6IHsiZGV0ZXJtaW5pc3RpYyI6IHRydWUsICJvcmFjbGUiOiAidmVyaWZpZWQtd2ViLXNlYXJjaC92MSIsICJ2ZXJkaWN0IjogIkRFTElWRVJFRCJ9LCAicGF5bWVudCI6IHsiY29uZmlybWF0aW9ucyI6IDAsICJldmlkZW5jZV9jbGFzcyI6ICJMSVZFX1VOUEFJRCIsICJyZWZlcmVuY2UiOiAiIiwgInN0YXR1cyI6ICJOT1RfQ09OTkVDVEVEIn0sICJyZXF1ZXN0X2ZpbmdlcnByaW50IjogInNoYTI1Njo0MDVmZGNlODMxYzc5Njc0ZDBmOTkzMjVhMTZjZTFhZDY2ZmMyOTkxNTRlYmU3NzM1ZjdkMzQ2NDJkOGM4ZGIzIiwgInJlc3BvbnNlX2ZpbmdlcnByaW50IjogInNoYTI1NjowMjk0YTU5YjE3MDNkYzQ4MmQ3ODQwZDhiM2M3ZTYxOGE5MTk0NjRkOTc3YTNkYmE0MzAwOGFjMjg5NDY4MTgyIiwgInNlcnZlZF9hdCI6IDE3ODkyMDAwMDAuMH0=",
+        "payload": "eyJfdHlwZSI6ICJnaG9zdC12ZXJpZmllZC13ZWItc2VhcmNoLXJlY2VpcHQvdjIuMSIsICJhdHRyaWJ1dGVzIjogeyJhdHRlbXB0cyI6IFt7ImVsYXBzZWRfbXMiOiA4MTIsICJvdXRjb21lIjogIkRFTElWRVJFRCIsICJwcm92aWRlciI6ICJzZXJwaW5nYXBpLmNvbSJ9XSwgInByb3ZpZGVyIjogInNlcnBpbmdhcGkuY29tIn0sICJvcmFjbGVfdmVyZGljdCI6IHsiZGV0ZXJtaW5pc3RpYyI6IHRydWUsICJvcmFjbGUiOiAidmVyaWZpZWQtd2ViLXNlYXJjaC92MSIsICJ2ZXJkaWN0IjogIkRFTElWRVJFRCJ9LCAicGF5bWVudCI6IHsiY29uZmlybWF0aW9ucyI6IDAsICJldmlkZW5jZV9jbGFzcyI6ICJOT1RfQVRURVNURURfQllfUkVDRUlQVCIsICJyZWZlcmVuY2UiOiAiIiwgInN0YXR1cyI6ICJOT1RfQVRURVNURUQifSwgInJlcXVlc3RfZmluZ2VycHJpbnQiOiAic2hhMjU2OjQwNWZkY2U4MzFjNzk2NzRkMGY5OTMyNWExNmNlMWFkNjZmYzI5OTE1NGViZTc3MzVmN2QzNDY0MmQ4YzhkYjMiLCAicmVzcG9uc2VfZmluZ2VycHJpbnQiOiAic2hhMjU2OjAyOTRhNTliMTcwM2RjNDgyZDc4NDBkOGIzYzdlNjE4YTkxOTQ2NGQ5NzdhM2RiYTQzMDA4YWMyODk0NjgxODIiLCAic2VydmVkX2F0IjogMTc4OTIwMDAwMC4wfQ==",
         "payloadType": "application/vnd.ghost.attestation+json",
         "signatures": [
           {
             "keyid": "ed25519:56475aa75463474c0285df5dbf2bcab7",
-            "sig": "bnKUYwU77C/cuiHweSBgoEr0+eyxeTA48XyrY/GqEg65RZElHmlJbzdN9RzJTJyNEXCbV0KD5it0aw3J6n56DQ=="
+            "sig": "qlat+0tiWuBxE0WH8oTfl3r/5ox/CLAW0HDqojsM1mjnN9LgHPLAjPqwDFtL941XqdUD9ILfsZQcdClUCMK3AA=="
           }
         ]
       },
@@ -96,14 +96,15 @@
     },
     "payment": {
       "confirmations": 0,
-      "evidence_class": "LIVE_UNPAID",
+      "evidence_class": "NOT_ATTESTED_BY_RECEIPT",
       "reference": "",
-      "status": "NOT_CONNECTED"
+      "status": "NOT_ATTESTED"
     },
     "request_fingerprint": "sha256:405fdce831c79674d0f99325a16ce1ad66fc299154ebe7735f7d34642d8c8db3",
     "response_fingerprint": "sha256:0294a59b1703dc482d7840d8b3c7e618a919464d977a3dba43008ac289468182",
     "served_at": 1789200000.0
   },
+  "note_on_payment": "The signed payment block declines to speak about payment. This fixture is SYNTHETIC and unpaid, but the block reads identically on a real, settled production call: v1 binds no settlement evidence either way.",
   "negative_test": "n6-v21-statement-in-production-verifier",
   "expected_result": {
     "STATEMENT_TYPE": "FAIL",

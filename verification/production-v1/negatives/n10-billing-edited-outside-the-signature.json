@@ -1,5 +1,5 @@
 {
-  "fixture": "ghost/production-v1-receipt-fixture/v1#n2-observed-result-url-only",
+  "fixture": "ghost/production-v1-receipt-fixture/v1#n10-billing-edited-outside-the-signature",
   "SYNTHETIC": true,
   "warning": "SYNTHETIC. Produced by the unmodified production receipt function with a synthetic key, so the SCHEMA is exactly production's. No payment occurred.",
   "http_request": {
@@ -30,7 +30,7 @@
       },
       {
         "title": "C",
-        "url": "https://attacker.example/x",
+        "url": "https://example.com/c",
         "snippet": "three",
         "position": 3,
         "published": ""
@@ -55,12 +55,13 @@
     ],
     "billing": {
       "fee": {
-        "amount": "0.01",
+        "amount": "99.00",
         "amount_minor": 10000,
         "currency": "USDC"
       },
       "rail": "x402-per-call",
-      "payments_required": 1
+      "payments_required": 1,
+      "settlement_tx": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
     },
     "receipt": {
       "signed": true,
@@ -105,9 +106,10 @@
     "served_at": 1789200000.0
   },
   "note_on_payment": "The signed payment block declines to speak about payment. This fixture is SYNTHETIC and unpaid, but the block reads identically on a real, settled production call: v1 binds no settlement evidence either way.",
-  "negative_test": "n2-observed-result-url-only",
+  "negative_test": "n10-billing-edited-outside-the-signature",
   "expected_result": {
-    "RESPONSE_BINDING": "FAIL",
-    "exit": 1
+    "SIGNATURE_VALID": "VALID",
+    "exit": 0,
+    "note": "billing sits OUTSIDE the signature, so editing it changes no verifier conclusion. That is the point: billing is not settlement evidence, and this fixture proves the verifier never treated it as any."
   }
 }
